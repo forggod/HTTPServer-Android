@@ -1,1 +1,1 @@
-{"university": {"faculties": [{"id": 1, "name": "Faculty 1"}, {"id": 2, "name": "Faculty 2"}], "groups": [{"facultyID": 1, "id": 1, "name": "Group 1"}, {"facultyID": 1, "id": 2, "name": "Group 2"}], "students": []}}
+{"university": {"faculties": [], "groups": [], "students": []}}
