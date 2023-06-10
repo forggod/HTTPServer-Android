@@ -3,7 +3,7 @@ import socketserver
 import json
 
 PORT = 5050
-IP = '192.168.0.100'
+IP = '192.168.0.105'
 
 
 def read_json():
@@ -20,14 +20,15 @@ def write_json(data):
 class MyHandler(http.server.BaseHTTPRequestHandler):
     def do_GET(self):
         try:
+            paths = self.path.split('/')
             # Определяем заголовки ответа
-            if self.path == '/':
+            if self.path == '/university':
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
 
                 # Создаем и отправляем JSON-ответ
-                data = read_json()
+                data = read_json()[paths[1]]
                 print(data)
                 json_data = json.dumps(data)
                 self.wfile.write(json_data.encode())
@@ -35,7 +36,6 @@ class MyHandler(http.server.BaseHTTPRequestHandler):
             elif self.path == '/university/faculties' or \
                     self.path == '/university/groups' or \
                     self.path == '/university/students':
-                paths = self.path.split('/')
                 self.send_response(200)
                 self.send_header('Content-type', 'application/json')
                 self.end_headers()
